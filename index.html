@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenPulse - Smart Irrigation, Solar Innovation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'green-primary': '#16a34a',
+                        'green-secondary': '#22c55e',
+                        'green-light': '#bbf7d0',
+                        'eco-dark': '#166534',
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-in': 'slideIn 0.8s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 25%, #bbf7d0 50%, #86efac 75%, #4ade80 100%);
+        }
+
+        /* Dark Mode Styles */
+        .dark {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+
+        .dark .bg-white {
+            background-color: #374151 !important;
+        }
+
+        .dark .bg-gray-50 {
+            background-color: #4b5563 !important;
+        }
+
+        .dark .bg-gray-900 {
+            background-color: #111827 !important;
+        }
+
+        .dark .text-gray-700 {
+            color: #d1d5db !important;
+        }
+
+        .dark .text-gray-600 {
+            color: #9ca3af !important;
+        }
+
+        .dark .text-eco-dark {
+            color: #22c55e !important;
+        }
+
+        .dark .hero-gradient {
+            background: linear-gradient(135deg, #065f46 0%, #047857 25%, #059669 50%, #10b981 75%, #34d399 100%);
+        }
+
+        .dark nav {
+            background-color: #1f2937 !important;
+            border-bottom: 1px solid #374151;
+        }
+
+        .dark .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Center team member images */
+        .team-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-card img {
+            display: block;
+            margin: 0 auto;
+            object-position: center center;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-green-primary">🌱 GreenPulse</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="#vision" class="nav-link text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Vision</a>
+                        <a href="#mission" class="nav-link text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Mission</a>
+                        <a href="#features" class="nav-link text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Features</a>
+                        <a href="#team" class="nav-link text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Team</a>
+                        <a href="#contact" class="nav-link text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <!-- Theme Toggle Button -->
+                        <button id="theme-toggle" class="text-gray-700 hover:text-green-primary p-2 rounded-md transition-colors" title="Toggle theme">
+                            <i class="fas fa-moon text-lg"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button and Theme Toggle -->
+                <div class="md:hidden flex items-center space-x-2">
+                    <button id="theme-toggle-mobile" class="text-gray-700 hover:text-green-primary p-2 rounded-md transition-colors" title="Toggle theme">
+                        <i class="fas fa-moon text-lg"></i>
+                    </button>
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-green-primary focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+                    <a href="#home" class="nav-link block text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-base font-medium">Home</a>
+                    <a href="#vision" class="nav-link block text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-base font-medium">Vision</a>
+                    <a href="#mission" class="nav-link block text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-base font-medium">Mission</a>
+                    <a href="#features" class="nav-link block text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-base font-medium">Features</a>
+                    <a href="#team" class="nav-link block text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-base font-medium">Team</a>
+                    <a href="#contact" class="nav-link block text-gray-700 hover:text-green-primary px-3 py-2 rounded-md text-base font-medium">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex items-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-7xl font-bold text-eco-dark mb-6 animate-fade-in-up">
+                    Smart Irrigation,<br>Solar Innovation.
+                </h1>
+                <p class="text-xl md:text-2xl text-green-700 mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                    Growing Smarter, Farming Greener.
+                </p>
+                <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <a href="#contact" class="cta-button bg-green-primary hover:bg-eco-dark text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Join the Revolution
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section id="vision" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-eco-dark mb-4 animate-on-scroll">Our Vision</h2>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-green-light p-8 rounded-xl shadow-lg animate-on-scroll">
+                    <div class="text-center">
+                        <i class="fas fa-leaf text-6xl text-green-primary mb-6"></i>
+                        <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                            To revolutionize agriculture by creating sustainable, technology-driven solutions that empower farmers to achieve higher productivity while preserving our planet's natural resources for future generations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-eco-dark mb-4 animate-on-scroll">Our Mission</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="mission-card bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="text-center">
+                        <i class="fas fa-seedling text-5xl text-green-primary mb-4"></i>
+                        <h3 class="text-xl font-bold text-eco-dark mb-4">Sustainable Innovation</h3>
+                        <p class="text-gray-600">Develop cutting-edge agricultural technologies that promote environmental sustainability and resource conservation.</p>
+                    </div>
+                </div>
+                <div class="mission-card bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="text-center">
+                        <i class="fas fa-users text-5xl text-green-primary mb-4"></i>
+                        <h3 class="text-xl font-bold text-eco-dark mb-4">Farmer Empowerment</h3>
+                        <p class="text-gray-600">Provide farmers with accessible tools and knowledge to optimize their operations and increase profitability.</p>
+                    </div>
+                </div>
+                <div class="mission-card bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="text-center">
+                        <i class="fas fa-globe text-5xl text-green-primary mb-4"></i>
+                        <h3 class="text-xl font-bold text-eco-dark mb-4">Global Impact</h3>
+                        <p class="text-gray-600">Scale our solutions globally to address food security challenges and climate change impacts on agriculture.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems We Solve Section -->
+    <section id="problems" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-eco-dark mb-4 animate-on-scroll">Why GreenPulse?</h2>
+                <p class="text-xl text-gray-600 animate-on-scroll">Problems We Solve</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="problem-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl animate-on-scroll">
+                    <div class="flex items-start">
+                        <div class="text-4xl mr-4">💧</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-eco-dark mb-2">Water Crisis</h3>
+                            <p class="text-gray-700 text-sm mb-2">Inefficient water usage in traditional irrigation systems</p>
+                            <p class="text-green-600 text-sm font-semibold">✓ Smart irrigation reduces water consumption by 40%</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="problem-card bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 rounded-xl animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl mr-4">⚡</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-eco-dark mb-2">Energy Costs</h3>
+                            <p class="text-gray-700 text-sm mb-2">High electricity bills from traditional pumping systems</p>
+                            <p class="text-green-600 text-sm font-semibold">✓ Solar-powered systems cut energy costs by 70%</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="problem-card bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl mr-4">📈</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-eco-dark mb-2">Low Productivity</h3>
+                            <p class="text-gray-700 text-sm mb-2">Inconsistent crop yields and resource management</p>
+                            <p class="text-green-600 text-sm font-semibold">✓ AI-driven insights boost productivity by 35%</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="problem-card bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl mr-4">👨‍🌾</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-eco-dark mb-2">Farmer Empowerment</h3>
+                            <p class="text-gray-700 text-sm mb-2">Limited access to modern agricultural technology</p>
+                            <p class="text-green-600 text-sm font-semibold">✓ Accessible tech solutions for all farm sizes</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="problem-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl animate-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="flex items-start">
+                        <div class="text-4xl mr-4">🌱</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-eco-dark mb-2">Sustainability</h3>
+                            <p class="text-gray-700 text-sm mb-2">Environmental impact of conventional farming</p>
+                            <p class="text-green-600 text-sm font-semibold">✓ Carbon-neutral farming practices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-eco-dark mb-4 animate-on-scroll">Key Features</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-on-scroll">
+                    <div class="text-center">
+                        <i class="fas fa-tint text-5xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-eco-dark mb-4">Smart Irrigation System</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-4">Automated water management with precision control.</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Soil moisture monitoring</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Weather-based scheduling</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Remote control via app</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.1s;">
+                    <div class="text-center">
+                        <i class="fas fa-solar-panel text-5xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-eco-dark mb-4">Solar Power Integration</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-4">Renewable energy solutions for sustainable farming.</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">High-efficiency solar panels</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Battery backup systems</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Grid-tie capabilities</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="text-center">
+                        <i class="fas fa-brain text-5xl text-purple-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-eco-dark mb-4">AI-Powered Analytics</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-4">Data-driven insights for optimal crop management.</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Crop health monitoring</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Yield predictions</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Resource optimization</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="text-center">
+                        <i class="fas fa-mobile-alt text-5xl text-green-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-eco-dark mb-4">Mobile App Control</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-4">Complete farm management from your smartphone.</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Real-time monitoring</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Push notifications</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Historical data analysis</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-card bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="text-center">
+                        <i class="fas fa-cloud text-5xl text-indigo-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-eco-dark mb-4">Cloud-Based Platform</h3>
+                        <div class="text-left">
+                            <p class="text-gray-600 mb-4">Secure, scalable infrastructure for all your data.</p>
+                            <div class="space-y-2">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Data backup & security</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">Multi-farm management</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-primary mr-2"></i>
+                                    <span class="text-sm">API integrations</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-eco-dark mb-4 animate-on-scroll">Meet Our Team</h2>
+            </div>
+            
+            <!-- Team Members Grid -->
+            <!-- First Row - 3 Members -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 justify-items-center">
+                <div class="team-card bg-gray-50 p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-shadow animate-on-scroll">
+                    <img src="attached_assets/d4762d6f-9bf6-4d1e-8a85-c7ab5960ae22_1756281979740.jpg" alt="PRAVEENKUMAR" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-eco-dark mb-2">PRAVEENKUMAR</h3>
+                </div>
+                
+                <div class="team-card bg-gray-50 p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.1s;">
+                    <img src="attached_assets/77f26418-154e-4156-959a-0bb26ee5fcc0_1756281435878.jpg" alt="SAKTHIVEL" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-eco-dark mb-2">SAKTHIVEL</h3>
+                </div>
+                
+                <div class="team-card bg-gray-50 p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.2s;">
+                    <img src="attached_assets/4844785f-17c5-464b-8f8b-fc50708b7165_1756282145530.jpg" alt="NAVEENKUMAR" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-eco-dark mb-2">NAVEENKUMAR</h3>
+                </div>
+            </div>
+            
+            <!-- Second Row - 2 Members -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 justify-items-center max-w-2xl mx-auto">
+                <div class="team-card bg-gray-50 p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.3s;">
+                    <img src="attached_assets/73252276-7fc9-4a1d-a772-5f101becc8b4_1756282041003.jpg" alt="VICKY" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-eco-dark mb-2">VICKY</h3>
+                </div>
+                
+                <div class="team-card bg-gray-50 p-6 rounded-xl text-center shadow-lg hover:shadow-xl transition-shadow animate-on-scroll" style="animation-delay: 0.4s;">
+                    <img src="attached_assets/WhatsApp Image 2025-08-27 at 12.40.59 PM_1756280310690.jpeg" alt="ASHWINI" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h3 class="text-xl font-bold text-eco-dark mb-2">ASHWINI</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta" class="py-20 bg-gradient-to-r from-green-primary to-eco-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold mb-8 animate-on-scroll">
+                Join us in revolutionizing agriculture with GreenPulse.
+            </h2>
+            <p class="text-xl md:text-2xl mb-10 animate-on-scroll" style="animation-delay: 0.2s;">
+                Be part of the sustainable farming revolution that's changing the world.
+            </p>
+            <div class="space-y-4 md:space-y-0 md:space-x-6 md:flex md:justify-center animate-on-scroll" style="animation-delay: 0.4s;">
+                <a href="#contact" class="cta-button bg-white text-green-primary hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg inline-block">
+                    Contact Us
+                </a>
+                <a href="#contact" class="cta-button bg-transparent border-2 border-white text-white hover:bg-white hover:text-green-primary font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 inline-block">
+                    Pilot on Your Farm
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact/Footer Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8">Get In Touch</h2>
+                    <form class="space-y-6" id="contact-form">
+                        <div>
+                            <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-green-primary transition-colors">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" required class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-green-primary transition-colors">
+                        </div>
+                        <div>
+                            <input type="text" placeholder="Farm Size (acres)" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-green-primary transition-colors">
+                        </div>
+                        <div>
+                            <textarea placeholder="Tell us about your farming needs..." rows="4" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-green-primary transition-colors resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-green-primary hover:bg-green-secondary text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Company Info -->
+                <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-8">🌱 GreenPulse</h2>
+                    <p class="text-gray-300 mb-8 text-lg">
+                        Pioneering the future of sustainable agriculture through innovative technology solutions.
+                    </p>
+                    
+                    <!-- Quick Links -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4 text-green-secondary">Quick Links</h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <a href="#home" class="nav-link text-gray-300 hover:text-green-secondary transition-colors">Home</a>
+                            <a href="#vision" class="nav-link text-gray-300 hover:text-green-secondary transition-colors">Vision</a>
+                            <a href="#mission" class="nav-link text-gray-300 hover:text-green-secondary transition-colors">Mission</a>
+                            <a href="#features" class="nav-link text-gray-300 hover:text-green-secondary transition-colors">Features</a>
+                            <a href="#team" class="nav-link text-gray-300 hover:text-green-secondary transition-colors">Team</a>
+                            <a href="#contact" class="nav-link text-gray-300 hover:text-green-secondary transition-colors">Contact</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="mb-8">
+                        <div class="flex space-x-6">
+                            <a href="mailto:adhiecell@adhi.edu.in" class="text-gray-300 hover:text-green-secondary text-2xl transition-colors" title="Email us">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://www.instagram.com/adhi_ecell?igsh=MXIwamp4ZGp3cXV2bQ==" target="_blank" class="text-gray-300 hover:text-green-secondary text-2xl transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="text-gray-300 hover:text-green-secondary text-2xl transition-colors">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 GreenPulse. All rights reserved. | Revolutionizing Agriculture Through Innovation
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Smooth Scrolling and Animations -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link, .cta-button').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 70; // Account for fixed navbar
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        // Scroll animations
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.querySelector('#theme-toggle i');
+            const themeIconMobile = document.querySelector('#theme-toggle-mobile i');
+            
+            body.classList.toggle('dark');
+            
+            // Update icons
+            if (body.classList.contains('dark')) {
+                themeIcon.className = 'fas fa-sun text-lg';
+                themeIconMobile.className = 'fas fa-sun text-lg';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.className = 'fas fa-moon text-lg';
+                themeIconMobile.className = 'fas fa-moon text-lg';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initialize theme from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+                document.querySelector('#theme-toggle i').className = 'fas fa-sun text-lg';
+                document.querySelector('#theme-toggle-mobile i').className = 'fas fa-sun text-lg';
+            }
+        });
+
+        // Theme toggle event listeners
+        document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+        document.getElementById('theme-toggle-mobile').addEventListener('click', toggleTheme);
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation and feedback
+            const formData = new FormData(this);
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            
+            if (name && email) {
+                alert('Thank you for your interest! We will contact you soon to discuss how GreenPulse can revolutionize your farming operations.');
+                this.reset();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Navbar background change on scroll
+        function updateNavbar() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.add('bg-transparent');
+                navbar.classList.remove('bg-white', 'shadow-lg');
+            }
+        }
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            animateOnScroll();
+            updateNavbar();
+        });
+
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            updateNavbar();
+        });
+
+        // Initialize animations and navbar state
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+            updateNavbar();
+        });
+    </script>
+</body>
+</html>

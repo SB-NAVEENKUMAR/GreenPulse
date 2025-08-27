@@ -1,0 +1,37 @@
+Build a modern, responsive startup website for "🌱 GreenPulse" using HTML, TailwindCSS, and a bit of JavaScript for smooth scrolling animations. The design should be clean, professional, and eco-tech themed (green + white with accent colors).  
+
+Sections to include:  
+
+1. **Navbar** – Logo "GreenPulse" (text-based for now), menu links: Home, Vision, Mission, Features, Team, Contact. Sticky at top with smooth scrolling.  
+
+2. **Hero Section** – Large heading with GreenPulse motto:  
+   "Smart Irrigation, Solar Innovation."  
+   Subheading: “Growing Smarter, Farming Greener.”  
+   Add a CTA button: "Join the Revolution" → scrolls to Contact.  
+   Background: abstract eco/tech farming illustration or gradient.  
+
+3. **Vision Section** – Show the provided vision statement in a card style with eco icons.  
+
+4. **Mission Section** – Show the mission points in a 3-column responsive grid with icons.  
+
+5. **Why GreenPulse (Problems We Solve)** – Present each problem + solution with emojis as bullet points. Use icons or illustrations for Water Crisis, Energy Costs, Low Productivity, Farmer Empowerment, Sustainability.  
+
+6. **Features Section** – 5 key features as cards with icons and checkmarks.  
+
+7. **Team Section** – Title: "Meet Our Team"  
+   - Grid with 4 member cards (temporary stock images + names like "Member 1", "Member 2" etc., roles as “Co-Founder”, “Engineer”, etc.)  
+   - Separate highlighted card for **Guidance Member** with bigger frame and title “Advisor / Mentor”.  
+
+8. **Call to Action (CTA Section)** – Bold statement:  
+   “Join us in revolutionizing agriculture with GreenPulse.”  
+   Buttons: “Contact Us” and “Pilot on Your Farm”.  
+
+9. **Footer** – Quick links, social media icons, and © GreenPulse 2025.  
+
+General style:  
+- Use TailwindCSS for layout and responsiveness.  
+- Smooth fade-in animations with Framer Motion or CSS transitions.  
+- Placeholder images for team (use `https://via.placeholder.com/200`).  
+- Mobile-friendly layout.  
+
+Deliver full working HTML + TailwindCSS code in one file so it runs directly on Replit without setup.
